@@ -22,7 +22,13 @@ from pynput.keyboard import Controller, Key
 
 keyboard = Controller()
 
-CONFIG_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'config.json')
+import sys
+
+if getattr(sys, 'frozen', False):
+    BASE_DIR = os.path.dirname(sys.executable)
+else:
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+CONFIG_FILE = os.path.join(BASE_DIR, 'config.json')
 
 
 def load_config():
